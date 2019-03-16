@@ -124,11 +124,6 @@ using IsNothrowMovable = StrictConjunction<
     std::is_nothrow_move_constructible<T>,
     std::is_nothrow_move_assignable<T>>;
 
-template <class From, class To>
-using IsConvertible = StrictConjunction<
-    std::is_constructible<To, From>,
-    std::is_assignable<To&, From>>;
-
 template <class T, class U>
 auto doEmplaceAssign(int, T& t, U&& u)
     -> decltype(void(t = static_cast<U&&>(u))) {
@@ -559,7 +554,7 @@ struct ExpectedHelper {
       class Error,
       class T,
       class U FOLLY_REQUIRES_TRAILING(
-          expected_detail::IsConvertible<U&&, Error>::value)>
+          std::is_convertible<U&&, Error>::value)>
   static constexpr Expected<T, Error> return_(Expected<T, U> t) {
     return t;
   }
@@ -984,8 +979,8 @@ class Expected final : expected_detail::ExpectedStorage<Value, Error> {
       class V,
       class E FOLLY_REQUIRES_TRAILING(
           !std::is_same<Expected<V, E>, Expected>::value &&
-          expected_detail::IsConvertible<V&&, Value>::value &&
-          expected_detail::IsConvertible<E&&, Error>::value)>
+          std::is_convertible<V&&, Value>::value &&
+          std::is_convertible<E&&, Error>::value)>
   Expected& operator=(Expected<V, E> that) {
     this->assign(std::move(that));
     return *this;
