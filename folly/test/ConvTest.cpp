@@ -827,7 +827,7 @@ void testStr2Bool() {
 }
 
 TEST(Conv, StringToBool) {
-  // testStr2Bool<const char *>();
+  testStr2Bool<const char *>();
   testStr2Bool<std::string>();
 
   // Test with strings that are not NUL terminated.
