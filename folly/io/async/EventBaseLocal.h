@@ -104,16 +104,7 @@ class EventBaseLocal : public detail::EventBaseLocalBase {
 
   template <typename Func>
   T& getOrCreateFn(EventBase& evb, Func fn) {
-    // If this looks like it's copy/pasted from above, that's because it is.
-    // gcc has a bug (fixed in 4.9) that doesn't allow capturing variadic
-    // params in a lambda.
-    if (auto ptr = getVoid(evb)) {
-      return *static_cast<T*>(ptr);
-    }
-    std::shared_ptr<T> smartPtr(fn());
-    auto& ref = *smartPtr;
-    setVoid(evb, std::move(smartPtr));
-    return ref;
+    return getOrCreate(evb, fn);
   }
 };
 
