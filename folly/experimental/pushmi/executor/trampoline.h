@@ -29,7 +29,7 @@ namespace folly {
 namespace pushmi {
 
 struct recurse_t {};
-constexpr const recurse_t recurse{};
+constexpr recurse_t recurse{};
 
 namespace detail {
 

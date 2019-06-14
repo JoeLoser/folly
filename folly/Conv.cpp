@@ -214,7 +214,7 @@ struct ErrorString {
 };
 
 // Keep this in sync with ConversionCode in Conv.h
-constexpr const std::array<
+constexpr std::array<
     ErrorString,
     static_cast<std::size_t>(ConversionCode::NUM_ERROR_CODES)>
     kErrorStrings{{

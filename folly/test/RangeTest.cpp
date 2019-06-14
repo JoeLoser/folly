@@ -1141,34 +1141,34 @@ TEST(RangeFunc, CArray) {
 }
 
 TEST(RangeFunc, ConstexprCArray) {
-  static constexpr const int numArray[4] = {3, 17, 1, 9};
-  constexpr const auto numArrayRange = range(numArray);
+  static constexpr int numArray[4] = {3, 17, 1, 9};
+  constexpr auto numArrayRange = range(numArray);
   EXPECT_EQ(17, numArrayRange[1]);
-  constexpr const auto numArrayRangeSize = numArrayRange.size();
+  constexpr auto numArrayRangeSize = numArrayRange.size();
   EXPECT_EQ(4, numArrayRangeSize);
 }
 
 TEST(RangeFunc, ConstexprStdArray) {
-  static constexpr const std::array<int, 4> numArray = {{3, 17, 1, 9}};
-  constexpr const auto numArrayRange = range(numArray);
+  static constexpr std::array<int, 4> numArray = {{3, 17, 1, 9}};
+  constexpr auto numArrayRange = range(numArray);
   EXPECT_EQ(17, numArrayRange[1]);
-  constexpr const auto numArrayRangeSize = numArrayRange.size();
+  constexpr auto numArrayRangeSize = numArrayRange.size();
   EXPECT_EQ(4, numArrayRangeSize);
 }
 
 TEST(RangeFunc, ConstexprStdArrayZero) {
-  static constexpr const std::array<int, 0> numArray = {};
-  constexpr const auto numArrayRange = range(numArray);
-  constexpr const auto numArrayRangeSize = numArrayRange.size();
+  static constexpr std::array<int, 0> numArray = {};
+  constexpr auto numArrayRange = range(numArray);
+  constexpr auto numArrayRangeSize = numArrayRange.size();
   EXPECT_EQ(0, numArrayRangeSize);
 }
 
 TEST(RangeFunc, ConstexprIteratorPair) {
-  static constexpr const int numArray[4] = {3, 17, 1, 9};
+  static constexpr int numArray[4] = {3, 17, 1, 9};
   constexpr const auto numPtr = static_cast<const int*>(numArray);
-  constexpr const auto numIterRange = range(numPtr + 1, numPtr + 3);
+  constexpr auto numIterRange = range(numPtr + 1, numPtr + 3);
   EXPECT_EQ(1, numIterRange[1]);
-  constexpr const auto numIterRangeSize = numIterRange.size();
+  constexpr auto numIterRangeSize = numIterRange.size();
   EXPECT_EQ(2, numIterRangeSize);
 }
 
@@ -1187,12 +1187,12 @@ TEST(RangeFunc, ConstexprCollection) {
     const int* data_;
     size_t size_;
   };
-  static constexpr const int numArray[4] = {3, 17, 1, 9};
+  static constexpr int numArray[4] = {3, 17, 1, 9};
   constexpr const auto numPtr = static_cast<const int*>(numArray);
-  constexpr const auto numColl = IntCollection(numPtr + 1, 2);
-  constexpr const auto numCollRange = range(numColl);
+  constexpr auto numColl = IntCollection(numPtr + 1, 2);
+  constexpr auto numCollRange = range(numColl);
   EXPECT_EQ(1, numCollRange[1]);
-  constexpr const auto numCollRangeSize = numCollRange.size();
+  constexpr auto numCollRangeSize = numCollRange.size();
   EXPECT_EQ(2, numCollRangeSize);
 }
 
