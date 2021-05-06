@@ -30,7 +30,7 @@
 #include <folly/portability/Libunwind.h>
 #endif
 
-#if FOLLY_HAVE_BACKTRACE
+#if FOLLY_HAVE_BACKTRACE || defined(__APPLE__)
 #include <execinfo.h>
 #endif
 

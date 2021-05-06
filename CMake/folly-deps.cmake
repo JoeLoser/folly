@@ -179,6 +179,7 @@ if (NOT WIN32)
 endif()
 message(STATUS "Setting FOLLY_USE_SYMBOLIZER: ${FOLLY_USE_SYMBOLIZER}")
 message(STATUS "Setting FOLLY_HAVE_ELF: ${FOLLY_HAVE_ELF}")
+message(STATUS "Setting FOLLY_HAVE_BACKTRACE: ${FOLLY_HAVE_BACKTRACE}")
 message(STATUS "Setting FOLLY_HAVE_DWARF: ${FOLLY_HAVE_DWARF}")
 
 # Using clang with libstdc++ requires explicitly linking against libatomic
